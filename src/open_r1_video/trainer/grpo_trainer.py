@@ -370,6 +370,9 @@ class Qwen2VLGRPOTrainer(Trainer):
             prompt_inputs["input_ids"] = prompt_inputs["input_ids"][:, -self.max_prompt_length :]
             prompt_inputs["attention_mask"] = prompt_inputs["attention_mask"][:, -self.max_prompt_length :]
 
+        print("input_ids shape:", prompt_inputs["input_ids"].shape)
+        print("attention_mask shape:", prompt_inputs["attention_mask"].shape)
+
         # Generate completions
         with unwrap_model_for_generation(model, self.accelerator) as unwrapped_model:
             # prompt_completion_ids = unwrapped_model.generate(**prompt_inputs, generation_config=self.generation_config)
